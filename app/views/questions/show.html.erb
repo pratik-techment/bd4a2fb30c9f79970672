@@ -8,6 +8,26 @@
   <%= @question.topic.text_value %>
 </p>
 
+<h2>Answers</h2>
+ <% @question.answers.each do |answer| %>
+   <p>
+      <strong>Answer:</strong>
+      <%= answer.text_value %>
+   </p>
+  <% end %>
+
+<h2>Answer this questions:</h2>
+<%= form_for([@question, @question.answers.build]) do |f| %>
+<p>
+  <%= f.label :text_value %><br>
+  <%= f.text_field :text_value %>
+</p>
+ <p>
+  <%= f.submit %>
+ </p>
+<% end %>
+
+
 <%= render 'follow_form' %>
 
 <%= link_to 'Back', questions_path %>
