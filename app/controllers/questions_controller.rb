@@ -12,8 +12,8 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params)
-
+    topic = Topic.where(text_value: params[:topic]).first
+    @question = Question.new(text_value: question_params[:text_value], topic_id: topic.id, user_id: current_user.id)
     if @question.save
       redirect_to @question
     else

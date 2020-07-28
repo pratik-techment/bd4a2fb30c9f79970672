@@ -1,12 +1,27 @@
 <h1>New question</h1>
 
 <%= form_with(model: @question, local: true) do |form| %>
+
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@question.errors.count, "error") %> prohibited
+        this question from being saved:
+      </h2>
+      <ul>
+        <% @question.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <p>
     <%= form.label :text_value %><br>
     <%= form.text_field :text_value %>
   </p>
 
-  <%= select_tag "topic", options_for_select([['entertainment' ,1], ['sports', 2]]) %>
+  <%= select_tag "topic", options_for_select([['entertainment' , 'entertainment'], ['sports', 'sports']]) %>
 
   <p>
     <%= form.submit %>
