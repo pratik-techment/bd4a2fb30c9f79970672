@@ -8,4 +8,5 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up)
     devise_parameter_sanitizer.permit(:account_update)
   end
+
 end

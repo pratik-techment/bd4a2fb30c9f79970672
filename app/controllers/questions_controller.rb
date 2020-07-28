@@ -5,6 +5,8 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @user = @question.user
+    @is_current_user = current_user?(@user)
   end
 
   def new
@@ -25,5 +27,9 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:text_value, :topic)
+  end
+
+  def current_user?(user)
+    user == current_user
   end
 end
