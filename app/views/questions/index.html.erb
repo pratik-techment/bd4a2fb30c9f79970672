@@ -1,0 +1,17 @@
+<h1>All questions of user %></h1>
+<%= link_to 'create new question', new_question_path %>
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Topic</th>
+    <th></th>
+  </tr>
+
+  <% @questions.each do |question| %>
+    <tr>
+      <td><%= question.text_value %></td>
+      <td><%= question.topic.text_value %></td>
+      <td><%= link_to 'Show', question_path(question) %></td>
+    </tr>
+  <% end %>
+</table>
