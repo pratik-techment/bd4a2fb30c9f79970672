@@ -4,3 +4,17 @@
 <% if current_user %>
     <h5><%= current_user.email %></h5>
 <%end%>
+
+<h1>All questions</h1>
+<%= link_to 'create new question', new_question_path %>
+<table>
+  <tr>
+    <th>Question</th>
+  </tr>
+
+  <% @questions.each do |question| %>
+    <tr>
+      <td><%= link_to question.text_value, question_path(question), class: "question" %></td>
+    </tr>
+  <% end %>
+</table>
