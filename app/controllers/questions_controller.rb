@@ -1,4 +1,7 @@
 class QuestionsController < ApplicationController
+
+  skip_before_action :authenticate_user!, :only => [:show]
+
   def index
     @questions = current_user.questions
   end
@@ -6,7 +9,9 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @user = @question.user
-    @is_current_user = current_user?(@user)
+    if user_signed_in?
+      @is_current_user = current_user?(@user)
+    end
   end
 
   def new
