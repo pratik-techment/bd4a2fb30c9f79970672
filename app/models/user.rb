@@ -4,7 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_and_belongs_to_many :topics
+  # has_and_belongs_to_many :topics
+  has_and_belongs_to_many :interests,
+                          :class_name => 'Topic',
+                          :join_table => 'topics_users',
+                          :foreign_key => 'topic_id',
+                          :association_foreign_key => 'user_id'
+
   has_many :questions
   has_many :answers
 

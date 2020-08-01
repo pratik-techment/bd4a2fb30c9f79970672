@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :users do
-    member do
-      get :following, :followers
-    end
-  end
-
   get 'welcome/index'
 
   resources :questions do
@@ -14,6 +8,12 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
+
+  resources :users do
+    member do
+      resources :interests, only: [:create, :destroy]
+    end
+  end
 
   root to: "welcome#index"
 end

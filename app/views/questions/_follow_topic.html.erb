@@ -1,0 +1,7 @@
+<%= unless current_user.topics.include?(question.topic) %>
+  <%= form_tag(interests_path(current_user)) do %>
+    <div><%= hidden_field_tag :topic_id, @question.topic.id %></div>
+    <div><%= hidden_field_tag :question_id, @question.id %></div>
+    <%= submit_tag "Follow_topic", class: "btn btn-primary follow_topic" %>
+  <% end %>
+<% end %>
